@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir ="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <title> Home </title>
+            <link rel ="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+<body>
+
+  
+
+  
+<div class="container"> 
+    <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ไอดีหนัง</th>
+        <th>ชื่อหนัง</th>
+        <th>ความยาวหนัง(นาที)</th>
+        <th>ประเภทหนัง</th>
+        <th>เรทอายุ</th>
+        <th>เรทติ้ง</th>
+        <th>ราคา</th>
+        <th>รายละเอียด</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in datas %}
+      <tr>
+        <td>{{row.0}}</td>
+        <td>{{row.1}}</td>
+        <td>{{row.2}}</td>
+        <td>{{row.3}} </td>
+        <td>{{row.4}} </td>
+        <td>{{row.5}} </td>
+        <td>{{row.6}} </td>
+        <td> <a href="/view/{{ row.0 }}" class="btn btn-danger btn-xs" >รายละเอียด</a></td>
+      </tr>
+
+      <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="modal-body">
+              <form action="/update" method="POST">
+                <div class="form-group">
+                  <label>Movie_name:</label>
+                  <input type="hidden" name="id" value="{{row.0}}">
+                  <input type="text" class="form-control" name="fname" value="{{row.1}}">
+                </div>
+                <div class="form-group">
+                  <label>Movie_Length:</label>
+                  <input type="text" class="form-control" name="lname" value="{{row.2}}">
+                </div>
+                <div class="form-group">
+                  <label>Genre:</label>
+                  <input type="text" class="form-control" name="phone" value="{{row.3}}">
+                </div>
+                <div class="form-group">
+                  <label>Rate_Age:</label>
+                  <input type="text" class="form-control" name="phone" value="{{row.4}}">
+                </div>
+                <div class="form-group">
+                  <label>Rating:</label>
+                  <input type="text" class="form-control" name="phone" value="{{row.5}}">
+                </div>
+                <div class="form-group">
+                  <label>Price:</label>
+                  <input type="text" class="form-control" name="phone" value="{{row.6}}">
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        {% endfor %}
+    </tbody>
+  </table>
+  <a href="/register" class="btn btn-primary">สำหรับลูกค้าใหม่</a>
+  <a href="/login" class="pull-right btn btn-primary">สำหรับ staff</a>
+   </div>
+
+</body>    
+</html>
